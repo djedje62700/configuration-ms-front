@@ -14,12 +14,13 @@ angular.module('myApp.view1', ['ngRoute', 'ngMaterial'])
 
         var vm = this;
         vm.componentList = [];
+        const baseUrlApi = "https://madera-configuration-ms-api.herokuapp.com/";
 
 
         /**
          * Effectue une requete /get de la liste des composants sur l'API
          */
-        $http.get("http://localhost:1339/component").then(function SuccessGet(response) {
+        $http.get(baseUrlApi + "component").then(function SuccessGet(response) {
             if (response.data && response.data.length != 0) {
                 vm.componentList = response.data;
                 $mdToast.showSimple("La liste des composants à été chargé avec succés");
@@ -39,7 +40,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngMaterial'])
         vm.getCurrentComponent = function (componentList) {
             vm.currentComponent = componentList;
             console.log(vm.currentComponent);
-            $http.delete('http://localhost:1339/component/' + vm.currentComponent.id).then(function() {
+            $http.delete(baseUrlApi + "component/" + vm.currentComponent.id).then(function() {
                 $route.reload();
                 $mdToast.showSimple("Erreur lors de l'enregistrement du composant");
             })
@@ -74,7 +75,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngMaterial'])
                 console.log(componentToUpdate);
                 $http({
                     method: 'PUT',
-                    url: 'http://localhost:1339/component/' + vm.id ,
+                    url: baseUrlApi + "component/" + vm.id ,
                     data: componentToUpdate,
                     headers: {'Content-Type': 'application/json'}
                 }).then(function (response) {
@@ -105,7 +106,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngMaterial'])
                 console.log(component);
                 $http({
                     method: 'POST',
-                    url: 'http://localhost:1339/component',
+                    url: baseUrlApi + "component",
                     data: component,
                     headers: {'Content-Type': 'application/json'}
                 }).then(function (response) {

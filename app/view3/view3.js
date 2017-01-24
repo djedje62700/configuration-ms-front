@@ -16,11 +16,12 @@ angular.module('myApp.view3', ['ngRoute', 'ngMaterial'])
         vm.newBlocs = [];
         vm.blocs = [];
         vm.blocsName = "";
+        const baseUrl = "https://madera-configuration-ms-api.herokuapp.com/";
 
         /**
          * Effectue un appel /GET de la liste des modules
          */
-        $http.get("http://localhost:1339/modules")
+        $http.get(baseUrl + "modules")
             .then(function (response) {
                 vm.modules = response.data;
 
@@ -31,7 +32,7 @@ angular.module('myApp.view3', ['ngRoute', 'ngMaterial'])
         /**
          * Effectue un appel /GET de la liste des modules
          */
-        $http.get("http://localhost:1339/blocs")
+        $http.get(baseUrl + "blocs")
             .then(function (response) {
                 vm.blocs = response.data;
             }, function () {
@@ -77,7 +78,7 @@ angular.module('myApp.view3', ['ngRoute', 'ngMaterial'])
                 title: vm.blocsName,
                 modulesList : vm.newBlocs
             };
-            $http.post("http://localhost:1339/blocs/", vm.blocsToPost)
+            $http.post(baseUrl + "blocs/", vm.blocsToPost)
                 .then(function successPostModule() {
                     $mdDialog.hide();
                     $route.reload();
@@ -93,7 +94,7 @@ angular.module('myApp.view3', ['ngRoute', 'ngMaterial'])
          */
         vm.deleteBlocs = function (blocs) {
             vm.currentBlocs = blocs;
-            $http.delete('http://localhost:1339/blocs/' + vm.currentBlocs.id)
+            $http.delete(baseUrl + 'blocs/' + vm.currentBlocs.id)
                 .then(function successDeleteModule() {
                     $route.reload();
                     $mdToast.showSimple("Blocs supprimé avec succés");

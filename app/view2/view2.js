@@ -16,11 +16,12 @@ angular.module('myApp.view2', ['ngRoute', 'ngMaterial'])
         vm.newModule = [];
         vm.modules = [];
         vm.moduleName = "";
+        const baseUrlApi = "https://madera-configuration-ms-api.herokuapp.com/";
 
         /**
          * Effectue un appel /GET de la liste des component
          */
-        $http.get("http://localhost:1339/component")
+        $http.get(baseUrlApi + "component")
             .then(function (response) {
                 vm.components = response.data;
             }, function () {
@@ -30,7 +31,7 @@ angular.module('myApp.view2', ['ngRoute', 'ngMaterial'])
         /**
          * Effectue un appel /GET de la liste des modules
          */
-        $http.get("http://localhost:1339/modules")
+        $http.get(baseUrlApi + "modules")
             .then(function (response) {
                 vm.modules = response.data;
             }, function () {
@@ -75,7 +76,7 @@ angular.module('myApp.view2', ['ngRoute', 'ngMaterial'])
                 title: vm.moduleName,
                 componentList: vm.newModule
             };
-            $http.post("http://localhost:1339/modules/", vm.moduleToPost)
+            $http.post(baseUrlApi + "modules/", vm.moduleToPost)
                 .then(function successPostModule() {
                     $mdDialog.hide();
                     $route.reload();
@@ -91,7 +92,7 @@ angular.module('myApp.view2', ['ngRoute', 'ngMaterial'])
          */
         vm.deleteModules = function (modules) {
             vm.currentModule = modules;
-            $http.delete('http://localhost:1339/modules/' + vm.currentModule.id)
+            $http.delete(baseUrlApi + "modules/" + vm.currentModule.id)
                 .then(function successDeleteModule() {
                     $route.reload();
                     $mdToast.showSimple("Module supprimé avec succés");
