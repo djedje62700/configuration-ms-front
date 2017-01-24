@@ -1,0 +1,68 @@
+<div ng-controller="View2Ctrl as vm">
+    <center>
+        <h5 class="md-no-sticky">Selection des composants</h5>
+    </center>
+    <md-content class="md-no-momentum">
+        <md-input-container class="md-icon-float md-icon-right md-block">
+            <label>Rechercher un composant</label>
+            <input ng-model="searchText" type="text">
+        </md-input-container>
+    </md-content>
+
+    <div ng-repeat="components in View2Ctrl.components | filter:searchText"
+         ng-class="{'isSelected': components.added === true}">
+        <md-list-item>
+            <p>{{components.name}}</p>
+            <md-button ng-model="components.added" class="md-secondary"
+                       ng-click="vm.listComponent(components); components.count = components.count+1"><i
+                    class="material-icons">add_shopping_cart</i> {{components.count}}
+            </md-button>
+        </md-list-item>
+    </div>
+
+    <center>
+        <h5 class="md-no-sticky">Liste des modules</h5>
+    </center>
+
+    <md-content class="md-no-momentum">
+        <md-input-container class="md-icon-float md-icon-right md-block">
+            <label>Rechercher un module</label>
+            <input ng-model="searchModules" type="text">
+        </md-input-container>
+    </md-content>
+
+    <div ng-repeat="modules in View2Ctrl.modules | filter:searchModules">
+        <md-list-item>
+            <p>{{modules.title}}</p>
+            <md-button class="md-secondary"
+                       ng-click="vm.deleteModules(modules)">
+                <i class="material-icons">delete_forever</i>
+            </md-button>
+        </md-list-item>
+    </div>
+
+
+    <div ng-show="vm.actionButton === true">
+        <button class="rounded" ng-click="vm.createNewModule($event)"><i class="material-icons">note_add</i></button>
+        <button class="rounded2" ng-click="vm.clearModuleObject()"><i class="material-icons">delete_forever</i></button>
+    </div>
+
+    <div style="visibility: hidden">
+        <div class="md-dialog-container" id="myStaticDialog">
+            <md-dialog>
+                <md-content class="md-no-momentum">
+                    <h6>Titre de votre module</h6>
+                    <md-input-container class="md-icon-float md-icon-right md-block">
+                        <label>Nom du module...</label>
+                        <input ng-model="vm.moduleName" type="text">
+                    </md-input-container>
+                    <md-button class="md-secondary"
+                               ng-click="vm.postModule()"><i
+                            class="material-icons">add_shopping_cart</i> Enregistrer le module
+                    </md-button>
+                </md-content>
+            </md-dialog>
+        </div>
+    </div>
+
+</div>

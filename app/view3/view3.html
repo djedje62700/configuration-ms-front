@@ -1,0 +1,68 @@
+<div ng-controller="View3Ctrl as vm">
+    <center>
+        <h5 class="md-no-sticky">Selection des modules</h5>
+    </center>
+    <md-content class="md-no-momentum">
+        <md-input-container class="md-icon-float md-icon-right md-block">
+            <label>Rechercher un modules</label>
+            <input ng-model="searchBloc" type="text">
+        </md-input-container>
+    </md-content>
+
+    <div ng-repeat="modules in View3Ctrl.modules | filter:searchBloc"
+         ng-class="{'isSelected': modules.added === true}">
+        <md-list-item>
+            <p>{{modules.title}}</p>
+            <md-button ng-model="modules.added" class="md-secondary"
+                       ng-click="vm.listModules(modules); modules.count = modules.count+1"><i
+                    class="material-icons">add_shopping_cart</i> {{modules.count}}
+            </md-button>
+        </md-list-item>
+    </div>
+
+    <center>
+        <h5 class="md-no-sticky">Liste des blocs</h5>
+    </center>
+
+    <md-content class="md-no-momentum">
+        <md-input-container class="md-icon-float md-icon-right md-block">
+            <label>Rechercher un blocs</label>
+            <input ng-model="searchModules" type="text">
+        </md-input-container>
+    </md-content>
+
+    <div ng-repeat="blocs in View3Ctrl.blocs | filter:searcBlocs">
+        <md-list-item>
+            <p>{{blocs.title}}</p>
+            <md-button class="md-secondary"
+                       ng-click="vm.deleteBlocs(blocs)">
+                <i class="material-icons">delete_forever</i>
+            </md-button>
+        </md-list-item>
+    </div>
+
+
+    <div ng-show="vm.actionButtonBlocs === true">
+        <button class="rounded" ng-click="vm.createNewBlocs($event)"><i class="material-icons">note_add</i></button>
+        <button class="rounded2" ng-click="vm.clearBlocsObject()"><i class="material-icons">delete_forever</i></button>
+    </div>
+
+    <div style="visibility: hidden">
+        <div class="md-dialog-container" id="blocs">
+            <md-dialog>
+                <md-content class="md-no-momentum">
+                    <h6>Titre de votre bloc</h6>
+                    <md-input-container class="md-icon-float md-icon-right md-block">
+                        <label>Nom du bloc...</label>
+                        <input ng-model="vm.blocsName" type="text">
+                    </md-input-container>
+                    <md-button class="md-secondary"
+                               ng-click="vm.postBlocs()"><i
+                            class="material-icons">add_shopping_cart</i> Enregistrer le bloc
+                    </md-button>
+                </md-content>
+            </md-dialog>
+        </div>
+    </div>
+
+</div>

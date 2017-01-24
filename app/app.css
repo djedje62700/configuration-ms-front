@@ -1,0 +1,81 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+md-content.md-no-momentum._md {
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.isSelected {
+  background : #7CB342;
+  color: white;
+}
+.rounded {
+  background-color: #7CB342;
+  height: 56px;
+  position: relative;
+  width: 56px;
+  border: transparent;
+  box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+  box-sizing: content-box;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  pointer-events: auto;
+  position: fixed;
+  -webkit-transform: scale(1) rotate(360deg);
+  transform: scale(1) rotate(360deg);
+  -webkit-transition: -webkit-transform 150ms cubic-bezier(.4,0,1,1);
+  transition: transform 150ms cubic-bezier(.4,0,1,1);
+  color: white;
+  bottom: 1em;
+  border-radius: 50%;
+  right: 1em;
+}
+
+.rounded2 {
+  background-color: #d23f31;
+  height: 56px;
+  border: transparent;
+  /* position: relative; */
+  width: 56px;
+  box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+  box-sizing: content-box;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  pointer-events: auto;
+  position: fixed;
+  bottom: 1em;
+  -webkit-transform: scale(1) rotate(360deg);
+  transform: scale(1) rotate(360deg);
+  -webkit-transition: -webkit-transform 150ms cubic-bezier(.4,0,1,1);
+  transition: transform 150ms cubic-bezier(.4,0,1,1);
+  border-radius: 50%;
+  color: white;
+  left: 1em;
+}
+
